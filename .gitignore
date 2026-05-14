@@ -1,0 +1,28 @@
+# Obsidian per-user UI state — must NOT be shared between users
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/workspaces.json
+
+# Plugin data that's effectively per-user (some plugins write here)
+.obsidian/plugins/*/data-local.json
+
+# Obsidian trash (deletion staging)
+.trash/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor metadata
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local secrets — never commit
+.env
+.env.local
+*.pem
+*.key
