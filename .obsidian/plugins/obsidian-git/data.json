@@ -1,0 +1,20 @@
+{
+  "commitMessage": "vault: {{date}} {{hostname}}",
+  "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
+  "autoSaveInterval": 10,
+  "autoPushInterval": 10,
+  "autoPullInterval": 5,
+  "autoPullOnBoot": true,
+  "syncMethod": "rebase",
+  "disablePopups": true,
+  "showStatusBar": true,
+  "pullBeforePush": true,
+  "mergeOnPull": false,
+  "gitPath": "",
+  "username": "",
+  "differentIntervalCommitAndPush": true,
+  "refreshSourceControl": true,
+  "showFileMenu": true,
+  "treeStructure": true,
+  "submoduleRecurseCheckout": false
+}
