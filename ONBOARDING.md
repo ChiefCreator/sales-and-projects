@@ -1,6 +1,6 @@
 # Onboarding to the Sales & Projects Knowledge Base
 
-**Time required:** ~15 minutes.
+**Time required:** ~10 minutes.
 **What you'll end up with:** Obsidian installed locally, connected to the repo, with auto-sync running in the background. Editing a note in Obsidian becomes a commit on GitHub within ~10 minutes. Other people's changes show up in your vault within ~5 minutes.
 
 Stuck? Post in **#kb-help** on Slack.
@@ -9,7 +9,7 @@ Stuck? Post in **#kb-help** on Slack.
 
 ## Step 1 — Install Git
 
-You only need to install Git once on your machine. It works in the background; you'll never need to use it directly.
+You only need to install Git once on your machine. It works in the background; you'll never need to use it directly after setup.
 
 - **Windows:** open PowerShell and run `winget install Git.Git`. Restart your terminal.
 - **macOS:** open Terminal and run `brew install git`. If you don't have Homebrew, macOS will prompt you to install Apple's developer tools — that includes Git, also fine.
@@ -23,53 +23,35 @@ Verify: open a terminal, run `git --version`. You should see something like `git
 
 Download from **https://obsidian.md** and install. Free for our use.
 
-## Step 3 — Generate a GitHub Personal Access Token
+## Step 3 — Clone the repo and seed the config
 
-We use a "fine-grained" token scoped to just this one repo — if your laptop is ever compromised, the blast radius is this repo only.
+1. Pick a parent folder where the vault should live (e.g. `~/Documents/`). Don't create the `sales-and-projects` folder yourself — `git clone` will create it.
+2. Open a terminal in that parent folder:
+   - **Windows:** open **Git Bash** (installed alongside Git in Step 1).
+   - **macOS/Linux:** open Terminal.
+3. Clone the repo over HTTPS:
 
-1. Go to **https://github.com/settings/tokens?type=beta** → "Generate new token".
-2. **Token name:** `obsidian-sales-and-projects-<your-laptop>`
-3. **Expiration:** 1 year (calendar reminder yourself for renewal).
-4. **Resource owner:** select our company org (ask the gardener which one if unsure).
-5. **Repository access:** "Only select repositories" → choose `sales-and-projects`.
-6. **Permissions → Repository permissions:**
-   - **Contents:** Read and write
-   - **Metadata:** Read-only (this is mandatory; GitHub auto-selects it)
-7. Click **Generate token**. **Copy the token now** — GitHub won't show it again.
+   ```bash
+   git clone https://github.com/<our-org>/sales-and-projects.git
+   ```
 
-## Step 4 — Clone the vault into Obsidian
+4. Move into the cloned folder and run the config seeder:
 
-You will NOT use a terminal for this step.
+   ```bash
+   cd sales-and-projects
+   ./scripts/obsidian-setup.sh
+   ```
+
+   You'll see a list of `[wrote]` lines and a final `Done.` message. This copies the team-blessed Obsidian config (plugins, sync intervals, commit-message format) into your local `.obsidian/`.
+
+## Step 4 — Open the folder as a vault in Obsidian
 
 1. Open Obsidian.
-2. On the welcome screen, click **"Open another vault"** (bottom-left).
-3. Click **"Clone existing remote vault"**.
-4. **Repo URL:** `https://github.com/<our-org>/sales-and-projects.git` _(replace `<our-org>`)_
-5. **Username:** your GitHub username.
-6. **Password:** paste the PAT from Step 3 (not your GitHub password — the token).
-7. **Local path:** anywhere you like (e.g. `~/Documents/sales-and-projects`).
-8. Click **Clone**. Wait ~30 seconds.
+2. On the welcome screen, click **"Open folder as vault"** (Obsidian's term for "use this directory as my notes repository").
+3. Select the `sales-and-projects` folder you cloned in Step 3.
+4. When Obsidian asks whether to trust community plugins from this vault, click **"Trust author and enable plugins"**.
 
-## Step 5 — Trust and enable plugins
-
-When the vault opens, Obsidian will show a dialog asking whether to enable community plugins from this vault. **Click "Trust author and enable plugins"**.
-
-Then:
-
-1. Open **Settings → Community plugins**.
-2. Click **Browse** and search for "Git". Install **"Obsidian Git"** by Vinzent.
-3. Toggle it **on** in the installed plugins list. The plugin reads the committed settings automatically — you do NOT need to configure intervals, sync method, or anything else.
-
-You should see a small status indicator at the bottom-right of Obsidian (something like "✓" or commit info). That means sync is alive.
-
-## Step 6 — Verify end-to-end
-
-1. Open the file `projects/_template/notes/.gitkeep` (yes, the empty placeholder). Add a single line like `hello from <your name>`. Save (`Ctrl/Cmd-S`).
-2. Wait up to 10 minutes (you can speed it up: command palette → **"Obsidian Git: Commit-and-sync"**).
-3. Go to **https://github.com/<our-org>/sales-and-projects/commits/main** on GitHub. You should see your commit at the top, attributed to you with the message `vault: YYYY-MM-DD HH:mm:ss <your-hostname>`.
-4. Revert your change (delete the line, save, wait or run "Commit-and-sync" again).
-
-You're set.
+You're set. The Obsidian Git plugin starts syncing automatically — pull every 5 min, auto-commit + push every 10 min. A small status indicator at the bottom-right of the Obsidian window confirms sync is alive.
 
 ---
 
@@ -107,8 +89,4 @@ If that doesn't work, paste the file contents into **#kb-help** — the gardener
 
 ## Mobile (advanced, optional)
 
-Obsidian on iOS/Android works with the Git plugin, but it's finicky on large vaults. Don't make it your primary device. Setup is similar to Step 4 but you'll authenticate inside the plugin's settings.
-
-## Token renewal
-
-When your PAT expires (1 year), the plugin will start failing silently. Generate a new one (Step 3) and paste it into the plugin's settings.
+Obsidian on iOS/Android works with the Git plugin, but it's finicky on large vaults. Don't make it your primary device. Setup is similar to Step 3–4 but you'll authenticate inside the plugin's settings.

@@ -1,11 +1,5 @@
-# Obsidian per-user UI state — must NOT be shared between users
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.obsidian/cache/
-.obsidian/workspaces.json
-
-# Plugin data that's effectively per-user (some plugins write here)
-.obsidian/plugins/*/data-local.json
+# Obsidian config is shipped via .obsidian-template/ + scripts/obsidian-setup.sh.
+.obsidian/
 
 # Obsidian trash (deletion staging)
 .trash/

@@ -8,6 +8,24 @@ This repo is the canonical store. Most people interact with it through **Obsidia
 
 Read **[ONBOARDING.md](./ONBOARDING.md)**. Takes ~15 minutes.
 
+## First-time setup (after clone)
+
+After cloning the repo — and any time you want to resync to the latest team config — run:
+
+```bash
+./scripts/obsidian-setup.sh
+```
+
+This copies every file from `.obsidian-template/` into `.obsidian/` (plugins, vault settings, Obsidian Git defaults), overwriting any existing local versions. Safe to re-run.
+
+## Updating the shared Obsidian config
+
+The live `.obsidian/` directory is gitignored. To change the team-blessed config:
+
+1. Tweak your settings in Obsidian.
+2. Copy the changed file(s) from `.obsidian/` into `.obsidian-template/`.
+3. Commit `.obsidian-template/` only.
+
 ## Where is everything?
 
 - **`projects/<slug>/`** — one folder per project.
