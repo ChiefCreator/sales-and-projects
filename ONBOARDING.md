@@ -1,4 +1,4 @@
-# Onboarding to the Sales & Projects Knowledge Base
+# Onboarding to the Sales & Projects Knowledge Base 2
 
 **Time required:** ~10 minutes.
 **What you'll end up with:** Obsidian installed locally, connected to the repo, with auto-sync running in the background. Editing a note in Obsidian becomes a commit on GitHub within ~10 minutes. Other people's changes show up in your vault within ~5 minutes.
