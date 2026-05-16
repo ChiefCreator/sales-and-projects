@@ -1,4 +1,4 @@
-# Sales & Projects update 2234
+# Sales & Projects update
 
 The company's project knowledge base — every active and past project, with their main pages, call transcripts, tech notes, integrations, team, and links.
 
